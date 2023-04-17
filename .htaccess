@@ -20,3 +20,7 @@ AddOutputFilterByType DEFLATE text/html
 AddOutputFilterByType DEFLATE text/javascript
 AddOutputFilterByType DEFLATE text/plain
 AddOutputFilterByType DEFLATE text/xml
+
+<FilesMatch "\.(ico|webp|js|css)$">
+ Header set Cache-Control "max-age=2592000, public"
+ </FilesMatch>
