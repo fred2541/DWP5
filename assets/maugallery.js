@@ -114,8 +114,10 @@
       }
     },
     openLightBox(element, lightboxId) {
+      console.log(element);
       $(`#${lightboxId}`)
         .find(".lightboxImage")
+        .attr("alt", element.attr("alt"))
         .attr("src", element.attr("src"));
       $(`#${lightboxId}`).modal("toggle");
     },
@@ -157,6 +159,7 @@
         imagesCollection[index - 1] ||  // add -1 on the index to find the Prev picture
         imagesCollection[imagesCollection.length - 1];
       $(".lightboxImage").attr("src", $(next).attr("src"));
+      $(".lightboxImage").attr("alt", $(next).attr("alt"));
     },
     nextImage() {
       let activeImage = null;
@@ -204,13 +207,13 @@
                         <div class="modal-body">
                             ${
                               navigation
-                                ? '<div class="mg-prev" style="cursor:pointer;position:absolute;top:50%;left:-15px;background:white;"><</div>'
+                                ? '<div tabindex="0" aria-label="Photo précédente" class="mg-prev" style="cursor:pointer;position:absolute;top:50%;left:-15px;background:white;"><</div>'
                                 : '<span style="display:none;" />'
                             }
-                            <img class="lightboxImage img-fluid" alt="Contenu de l'image affichée dans la modale au clique"/>
+                            <img tabindex="0" class="lightboxImage img-fluid" alt="Contenu de l'image affichée dans la modale au clique"/>
                             ${
                               navigation
-                                ? '<div class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;}">></div>'
+                                ? '<div tabindex="0" aria-label="Photo suivante" class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;}">></div>'
                                 : '<span style="display:none;" />'
                             }
                         </div>
@@ -220,12 +223,12 @@
     },
     showItemTags(gallery, position, tags) {
       var tagItems =
-        '<li class="nav-item"><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
+        '<li class="nav-item" tabindex="0" aria-label="Voir toutes les photos."><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
       $.each(tags, function(index, value) {
-        tagItems += `<li class="nav-item active">
+        tagItems += `<li class="nav-item active" tabindex="0" aria-label="Voir les photos de ${value}">
                 <span class="nav-link"  data-images-toggle="${value}">${value}</span></li>`;
       });
-      var tagsRow = `<ul class="my-4 tags-bar nav nav-pills">${tagItems}</ul>`;
+      var tagsRow = `<ul class="my-4 tags-bar nav nav-pills" tabindex="0">${tagItems}</ul>`;
 
       if (position === "bottom") {
         gallery.append(tagsRow);
