@@ -226,7 +226,7 @@
         '<li class="nav-item" tabindex="0" aria-label="Voir toutes les photos."><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
       $.each(tags, function(index, value) {
         tagItems += `<li class="nav-item active" tabindex="0" aria-label="Voir les photos de ${value}">
-                <span class="nav-link"  data-images-toggle="${value}">${value}</span></li>`;
+                <span class="nav-link" data-images-toggle="${value}">${value}</span></li>`;
       });
       var tagsRow = `<ul class="my-4 tags-bar nav nav-pills" tabindex="0">${tagItems}</ul>`;
 
