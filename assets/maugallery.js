@@ -114,7 +114,6 @@
       }
     },
     openLightBox(element, lightboxId) {
-      console.log(element);
       $(`#${lightboxId}`)
         .find(".lightboxImage")
         .attr("alt", element.attr("alt"))
